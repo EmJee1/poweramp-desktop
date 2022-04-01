@@ -2,6 +2,12 @@ const Home = () => {
   const onFolderSelect = async () => {
     const filePath = await window.electronAPI.openFolder();
     console.log(filePath);
+
+    if (!filePath) {
+      return;
+    }
+
+    window.electronAPI.updateSettings({});
   };
 
   return (

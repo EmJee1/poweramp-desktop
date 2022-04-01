@@ -10,6 +10,7 @@ const getDatabasePath = (name: string) =>
 
 const db = {
   tracks: Datastore.create(getDatabasePath('tracks')),
+  settings: Datastore.create(getDatabasePath('settings')),
 };
 
 export default db;

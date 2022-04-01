@@ -1,7 +1,9 @@
 declare global {
   interface Window {
     electronAPI: {
-      openFolder: () => Promise<string[]>;
+      openFolder: () => Promise<null | string>;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      updateSettings: (folderPaths: Record<string, any>) => void;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on(channel: string, func: (...args: any[]) => void): void;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

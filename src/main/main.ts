@@ -14,7 +14,8 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { handleDialogOpenFolder } from './ipc/handle-dialog';
+import { handleDialogOpenFolder } from './ipc/dialog';
+import { onSettingsUpdate } from './ipc/settings';
 
 export default class AppUpdater {
   constructor() {
@@ -123,8 +124,7 @@ app
   .whenReady()
   .then(() => {
     ipcMain.handle('dialog:openFolder', handleDialogOpenFolder);
-
-    createWindow();
+    ipcMain.on('settings:update', onSettingsUpdate);
 
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
