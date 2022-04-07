@@ -28,4 +28,5 @@ npm-debug.log.*
 *.sass.d.ts
 *.scss.d.ts
 
-
+# Local development databases
+*.db
