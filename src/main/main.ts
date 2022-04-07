@@ -15,7 +15,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { handleDialogOpenFolder } from './ipc/dialog';
-import { onSettingsUpdate } from './ipc/settings';
+import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
 
 export default class AppUpdater {
   constructor() {
@@ -124,7 +124,8 @@ app
   .whenReady()
   .then(() => {
     ipcMain.handle('dialog:openFolder', handleDialogOpenFolder);
-    ipcMain.on('settings:update', onSettingsUpdate);
+    ipcMain.handle('settings:update', handleSettingsUpdate);
+    ipcMain.handle('settings:get', handleSettingsGet);
 
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the

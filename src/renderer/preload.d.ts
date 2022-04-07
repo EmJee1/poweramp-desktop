@@ -1,9 +1,11 @@
+import { Settings } from '../types';
+
 declare global {
   interface Window {
     electronAPI: {
       openFolder: () => Promise<null | string>;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      updateSettings: (folderPaths: Record<string, any>) => void;
+      updateSettings: (settings: Partial<Settings>) => Promise<void>;
+      getSettings: () => Promise<Settings>;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on(channel: string, func: (...args: any[]) => void): void;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
