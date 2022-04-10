@@ -6,6 +6,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   updateSettings: (settings: Partial<Settings>) =>
     ipcRenderer.invoke('settings:update', settings),
   getSettings: () => ipcRenderer.invoke('settings:get'),
-  scanLibrary: () => ipcRenderer.invoke('library:scan'),
+  scanTracks: () => ipcRenderer.invoke('tracks:scan'),
   getTracks: () => ipcRenderer.invoke('tracks:get'),
 });

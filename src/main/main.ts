@@ -16,8 +16,7 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { handleDialogOpenFolder } from './ipc/dialog';
 import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
-import { handleLibraryScan } from './ipc/library';
-import { handleTracksGet } from './ipc/tracks';
+import { handleTracksGet, handleTracksScan } from './ipc/tracks';
 
 export default class AppUpdater {
   constructor() {
@@ -128,7 +127,7 @@ app
     ipcMain.handle('dialog:openFolder', handleDialogOpenFolder);
     ipcMain.handle('settings:update', handleSettingsUpdate);
     ipcMain.handle('settings:get', handleSettingsGet);
-    ipcMain.handle('library:scan', handleLibraryScan);
+    ipcMain.handle('tracks:scan', handleTracksScan);
     ipcMain.handle('tracks:get', handleTracksGet);
 
     app.on('activate', () => {

@@ -6,7 +6,7 @@ declare global {
       openFolder: () => Promise<null | string>;
       updateSettings: (settings: Partial<Settings>) => Promise<void>;
       getSettings: () => Promise<Settings>;
-      scanLibrary: () => Promise<void>;
+      scanTracks: () => Promise<void>;
       getTracks: () => Promise<Track[]>;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on(channel: string, func: (...args: any[]) => void): void;

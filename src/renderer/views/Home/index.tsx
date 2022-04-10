@@ -24,7 +24,7 @@ const Home = () => {
   };
 
   const onFolderScan = async () => {
-    await window.electronAPI.scanLibrary();
+    await window.electronAPI.scanTracks();
     const newTracks = await window.electronAPI.getTracks();
     setTracks(newTracks);
   };
