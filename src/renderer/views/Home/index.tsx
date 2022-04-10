@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { Settings } from '../../../shared/types';
 import SettingsContext from '../../context/settings';
 import TracksContext from '../../context/tracks';
 
@@ -14,11 +13,7 @@ const Home = () => {
       return;
     }
 
-    const updated: Partial<Settings> = {
-      ...settings,
-      audioDirectories: [filePath],
-    };
-    await window.electronAPI.updateSettings(updated);
+    await window.electronAPI.updateSettings({ audioDirectories: [filePath] });
     const newSettings = await window.electronAPI.getSettings();
     setSettings(newSettings);
   };
