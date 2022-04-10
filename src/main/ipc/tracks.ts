@@ -1,7 +1,7 @@
 import db from '../../db/connection';
 import { Track } from '../../shared/types';
 import { getSettings } from './settings';
-import { allowedFiletypes } from '../../constants';
+import { allowedFiletypes, recursiveLibraryScanDepth } from '../../constants';
 import { scanDirectoryRecursively } from '../util/filesystem';
 
 export const handleTracksScan = async () => {
@@ -12,8 +12,11 @@ export const handleTracksScan = async () => {
     throw new Error('No audio directory configured');
   }
 
-  const fileFilter = allowedFiletypes.map((ext) => `*${ext}`);
-  const scanned = await scanDirectoryRecursively(directory, { fileFilter });
+  const fileFilterGlob = allowedFiletypes.map((ext) => `*${ext}`);
+  const scanned = await scanDirectoryRecursively(directory, {
+    depth: recursiveLibraryScanDepth,
+    fileFilter: fileFilterGlob,
+  });
 
   await db.tracks.remove({}, { multi: true });
   await db.tracks.persistence.compactDatafile();

@@ -4,4 +4,8 @@ export interface Settings {
 
 export interface Track {
   path: string;
+  title?: string;
+  albumartist?: string;
+  artists?: string[];
+  genre?: string[];
 }

@@ -37,7 +37,9 @@ const Home = () => {
       <p>Selected folder: {settings.audioDirectories}</p>
       <h4>Tracks:</h4>
       {tracks.map((track) => (
-        <p key={track.path}>{track.path}</p>
+        <p key={track.path}>
+          {track.albumartist} : {track.title}
+        </p>
       ))}
     </div>
   );
