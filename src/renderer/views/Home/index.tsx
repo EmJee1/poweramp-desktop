@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Settings } from '../../../shared/types';
 import SettingsContext from '../../context/settings';
+import TracksContext from '../../context/tracks';
 
 const Home = () => {
   const { settings, setSettings } = useContext(SettingsContext);
-  const [tracks, setTracks] = useState<string[]>([]);
+  const { tracks, setTracks } = useContext(TracksContext);
 
   const onFolderSelect = async () => {
     const filePath = await window.electronAPI.openFolder();
@@ -23,8 +24,9 @@ const Home = () => {
   };
 
   const onFolderScan = async () => {
-    const libraryContents = await window.electronAPI.scanLibrary();
-    setTracks(libraryContents);
+    await window.electronAPI.scanLibrary();
+    const newTracks = await window.electronAPI.getTracks();
+    setTracks(newTracks);
   };
 
   return (
@@ -40,7 +42,7 @@ const Home = () => {
       <p>Selected folder: {settings.audioDirectories}</p>
       <h4>Tracks:</h4>
       {tracks.map((track) => (
-        <p key={track}>{track}</p>
+        <p key={track.path}>{track.path}</p>
       ))}
     </div>
   );
