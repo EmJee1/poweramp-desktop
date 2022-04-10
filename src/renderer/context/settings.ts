@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { Settings } from '../../types';
+import { Settings } from '../../shared/types';
 
 export interface ISettingsContext {
   settings: Settings;

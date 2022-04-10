@@ -1,6 +1,8 @@
 import { IpcMainInvokeEvent } from 'electron';
+import { Settings } from '../../shared/types';
 import db from '../../db/connection';
-import { Settings } from '../../types';
+
+export const getSettings = async () => db.settings.findOne<Settings>({});
 
 export const handleSettingsUpdate = async (
   _event: IpcMainInvokeEvent,
@@ -10,5 +12,5 @@ export const handleSettingsUpdate = async (
 };
 
 export const handleSettingsGet = async () => {
-  return db.settings.findOne<Settings>({});
+  return getSettings();
 };
