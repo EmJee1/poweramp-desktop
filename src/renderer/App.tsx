@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import SettingsContext, { ISettingsContext } from './context/settings';
 import TracksContext, { ITracksContext } from './context/tracks';
 import Router from './router';
+import 'tailwindcss/tailwind.css';
 
 const App = () => {
   const [loading, setLoading] = useState({ settings: true, tracks: true });
