@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import SettingsContext from '../../context/settings';
 import TracksContext from '../../context/tracks';
 
 const Settings = () => {
-  const navigate = useNavigate();
   const { settings, setSettings } = useContext(SettingsContext);
   const { tracks, setTracks } = useContext(TracksContext);
 
@@ -29,9 +27,6 @@ const Settings = () => {
   return (
     <div>
       <h1>Settings</h1>
-      <button type="button" onClick={() => navigate(-1)}>
-        Go back
-      </button>
       <button type="button" onClick={onFolderSelect}>
         Select folder
       </button>

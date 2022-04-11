@@ -9,8 +9,6 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Poweramp</h1>
-      <Link to="/settings">Settings</Link>
       <h4>Artists:</h4>
       {artists.map((artist) => (
         <Link to={`/artist/${artist}`} key={artist}>
