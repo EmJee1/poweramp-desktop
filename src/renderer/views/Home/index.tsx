@@ -13,7 +13,9 @@ const Home = () => {
       <Link to="/settings">Settings</Link>
       <h4>Artists:</h4>
       {artists.map((artist) => (
-        <p key={artist}>{artist}</p>
+        <Link to={`/artist/${artist}`} key={artist}>
+          {artist}
+        </Link>
       ))}
       <h4>Tracks:</h4>
       {tracks.map((track) => (

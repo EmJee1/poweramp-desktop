@@ -11,7 +11,12 @@ const useArtists = () => {
     return Array.from(new Set(allArtists));
   }, [tracks]);
 
+  const getTracksByArtist = (artist: string) => {
+    return tracks.filter((track) => track.artists?.includes(artist));
+  };
+
   return {
+    getTracksByArtist,
     artists,
   };
 };
