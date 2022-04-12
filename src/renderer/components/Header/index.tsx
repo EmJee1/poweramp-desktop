@@ -1,17 +1,25 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CogIcon,
+} from '@heroicons/react/outline';
 import ButtonRound from '../ButtonRound';
+import HeaderSearchbar from '../HeaderSearchbar';
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <div>
-      <ButtonRound onClick={() => navigate(-1)}>{`<`}</ButtonRound>
-      <ButtonRound onClick={() => navigate(1)}>{`>`}</ButtonRound>
-      <h2>PowerAMP</h2>
+    <div className="m-2 flex">
+      <div className="flex">
+        <ButtonRound onClick={() => navigate(-1)} icon={ArrowLeftIcon} />
+        <ButtonRound onClick={() => navigate(1)} icon={ArrowRightIcon} />
+      </div>
+      <HeaderSearchbar />
       {location.pathname !== '/settings' && (
-        <Link to="/settings">Settings</Link>
+        <ButtonRound onClick={() => navigate('/settings')} icon={CogIcon} />
       )}
     </div>
   );

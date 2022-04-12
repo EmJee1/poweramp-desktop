@@ -1,12 +1,18 @@
+import { ComponentProps } from 'react';
+
 interface ButtonRoundProps {
-  children: JSX.Element | JSX.Element[] | string;
+  icon(props: ComponentProps<'svg'>): JSX.Element;
   onClick?: () => void;
 }
 
-const ButtonRound = ({ children, onClick }: ButtonRoundProps) => {
+const ButtonRound = ({ icon: Icon, onClick }: ButtonRoundProps) => {
   return (
-    <button type="button" onClick={onClick}>
-      {children}
+    <button
+      type="button"
+      className="w-12 h-12 rounded-full grid place-items-center"
+      onClick={onClick}
+    >
+      <Icon className="w-6 h-6" />
     </button>
   );
 };
