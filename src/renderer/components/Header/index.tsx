@@ -12,7 +12,7 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <div className="m-2 flex">
+    <div className="m-2 flex items-center justify-between">
       <div className="flex">
         <ButtonRound onClick={() => navigate(-1)} icon={ArrowLeftIcon} />
         <ButtonRound onClick={() => navigate(1)} icon={ArrowRightIcon} />
