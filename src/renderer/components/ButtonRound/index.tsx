@@ -9,10 +9,10 @@ const ButtonRound = ({ icon: Icon, onClick }: ButtonRoundProps) => {
   return (
     <button
       type="button"
-      className="w-12 h-12 rounded-full grid place-items-center"
+      className="grid h-12 w-12 place-items-center rounded-full"
       onClick={onClick}
     >
-      <Icon className="w-6 h-6" />
+      <Icon className="h-6 w-6" />
     </button>
   );
 };
