@@ -15,9 +15,21 @@ const App = () => {
     ITracksContext['tracks'],
     ITracksContext['setTracks']
   ];
-  const [currentTrack, setCurrentTrack] =
+  const [currentTrack, setCurrentTrackState] =
     useState<IPlayerContext['currentTrack']>(null);
   const [audioElement] = useState<IPlayerContext['audioElement']>(new Audio());
+
+  const setCurrentTrack: IPlayerContext['setCurrentTrack'] = async (track) => {
+    if (!track) {
+      setCurrentTrackState(null);
+      audioElement.pause();
+      return;
+    }
+
+    audioElement.src = `poweramp://${track.path}`;
+    await audioElement.play();
+    setCurrentTrackState(track);
+  };
 
   useEffect(() => {
     const fetchSettings = async () => {

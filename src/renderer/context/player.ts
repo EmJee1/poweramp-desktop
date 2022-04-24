@@ -1,10 +1,10 @@
-import { createContext, Dispatch, SetStateAction } from 'react';
+import { createContext } from 'react';
 import { Track } from '../../shared/types';
 
 export interface IPlayerContext {
   audioElement: HTMLAudioElement;
   currentTrack: Track | null;
-  setCurrentTrack: Dispatch<SetStateAction<Track | null>>;
+  setCurrentTrack: (track?: Track) => Promise<void>;
 }
 
 // @ts-expect-error default tracks context value is set in the provider
