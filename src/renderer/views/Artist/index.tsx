@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Track as ITrack } from '../../../shared/types';
 import useArtists from '../../hooks/use-artists';
-import Track from '../../components/Track';
 import ShowcaseCarousel from '../../components/ShowcaseCarousel';
 import ShowcaseCarouselItem from '../../components/ShowcaseCarouselItem';
 
