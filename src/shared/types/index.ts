@@ -8,4 +8,6 @@ export interface Track {
   albumartist?: string;
   artists?: string[];
   genre?: string[];
+  cover?: string;
+  album?: string;
 }

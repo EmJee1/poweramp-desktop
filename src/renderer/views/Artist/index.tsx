@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import useArtists from '../../hooks/use-artists';
+import Track from '../../components/Track';
 
 const Artist = () => {
   const { artists, getTracksByArtist } = useArtists();
@@ -18,9 +19,7 @@ const Artist = () => {
     <div>
       <h1>Artist {params.artist}</h1>
       {artistTracks.map((track) => (
-        <p key={track.path}>
-          {track.artists?.join(', ')}: {track.title}
-        </p>
+        <Track key={track.path} track={track} />
       ))}
     </div>
   );

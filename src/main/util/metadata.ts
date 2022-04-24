@@ -4,7 +4,9 @@ import { metadataArtistsSeparator } from '../../constants';
 
 export const extractMetadata = async (
   filePath: string
-): Promise<Pick<Track, 'title' | 'albumartist' | 'artists' | 'genre'>> => {
+): Promise<
+  Pick<Track, 'title' | 'albumartist' | 'artists' | 'genre' | 'cover' | 'album'>
+> => {
   const { common } = await mm.parseFile(filePath);
 
   let artists: string[] | undefined;
@@ -15,10 +17,20 @@ export const extractMetadata = async (
       .split(metadataArtistsSeparator);
   }
 
+  const cover = mm.selectCover(common.picture);
+  let base64Cover;
+  if (cover) {
+    base64Cover = `data:${cover.format};base64,${cover.data.toString(
+      'base64'
+    )}`;
+  }
+
   return {
     title: common.title,
     albumartist: common.albumartist,
     artists,
     genre: common.genre,
+    cover: base64Cover,
+    album: common.album,
   };
 };
