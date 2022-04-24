@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, protocol } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -17,6 +17,7 @@ import { resolveHtmlPath } from './util';
 import { handleDialogOpenFolder } from './ipc/dialog';
 import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
 import { handleTracksGet, handleTracksScan } from './ipc/tracks';
+import powerampProtocolHandler from './protocol';
 
 export default class AppUpdater {
   constructor() {
@@ -129,6 +130,8 @@ app
     ipcMain.handle('settings:get', handleSettingsGet);
     ipcMain.handle('tracks:scan', handleTracksScan);
     ipcMain.handle('tracks:get', handleTracksGet);
+
+    protocol.registerFileProtocol('poweramp', powerampProtocolHandler);
 
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the

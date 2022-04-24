@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import SettingsContext, { ISettingsContext } from './context/settings';
 import TracksContext, { ITracksContext } from './context/tracks';
+import PlayerContext, { IPlayerContext } from './context/player';
 import Router from './router';
 import 'tailwindcss/tailwind.css';
 
@@ -14,6 +15,9 @@ const App = () => {
     ITracksContext['tracks'],
     ITracksContext['setTracks']
   ];
+  const [currentTrack, setCurrentTrack] =
+    useState<IPlayerContext['currentTrack']>(null);
+  const [audioElement] = useState<IPlayerContext['audioElement']>(new Audio());
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -40,7 +44,11 @@ const App = () => {
   return (
     <SettingsContext.Provider value={{ settings, setSettings }}>
       <TracksContext.Provider value={{ tracks, setTracks }}>
-        {!isLoading && <Router />}
+        <PlayerContext.Provider
+          value={{ currentTrack, setCurrentTrack, audioElement }}
+        >
+          {!isLoading && <Router />}
+        </PlayerContext.Provider>
       </TracksContext.Provider>
     </SettingsContext.Provider>
   );
