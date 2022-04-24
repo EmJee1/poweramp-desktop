@@ -3,6 +3,7 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CogIcon,
+  HomeIcon,
 } from '@heroicons/react/outline';
 import ButtonRound from '../ButtonRound';
 import HeaderSearchbar from '../HeaderSearchbar';
@@ -20,6 +21,9 @@ const Header = () => {
       <HeaderSearchbar />
       {location.pathname !== '/settings' && (
         <ButtonRound onClick={() => navigate('/settings')} icon={CogIcon} />
+      )}
+      {location.pathname === '/settings' && (
+        <ButtonRound onClick={() => navigate('/')} icon={HomeIcon} />
       )}
     </div>
   );
