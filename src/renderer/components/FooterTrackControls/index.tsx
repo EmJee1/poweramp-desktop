@@ -6,13 +6,13 @@ import useAudio from '../../hooks/use-audio';
 
 const FooterTrackControls = () => {
   const { audioElement, currentTrack } = useContext(PlayerContext);
-  const { playing } = useAudio();
+  const { playing, duration, currentTime } = useAudio();
 
   const togglePlay = () =>
     playing ? audioElement.pause() : audioElement.play();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       <div className="flex">
         <ButtonRound
           icon={playing ? PauseIcon : PlayIcon}
@@ -20,6 +20,7 @@ const FooterTrackControls = () => {
           onClick={togglePlay}
         />
       </div>
+      <input type="range" min={0} max={duration} value={currentTime} />
     </div>
   );
 };
