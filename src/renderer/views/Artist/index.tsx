@@ -14,7 +14,7 @@ const Artist = () => {
     const { artist } = params;
 
     if (!artist || !artists.includes(artist)) {
-      return [];
+      return;
     }
 
     const artistTracks = getTracksByArtist(artist);
