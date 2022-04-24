@@ -2,18 +2,23 @@ import { useContext } from 'react';
 import { PlayIcon, PauseIcon } from '@heroicons/react/outline';
 import ButtonRound from '../ButtonRound';
 import PlayerContext from '../../context/player';
-import useCurrentTrack from '../../hooks/use-current-track';
+import useAudio from '../../hooks/use-audio';
 
 const FooterTrackControls = () => {
   const { audioElement } = useContext(PlayerContext);
-  const { playing } = useCurrentTrack();
+  const { playing } = useAudio();
 
   const togglePlay = () =>
     playing ? audioElement.pause() : audioElement.play();
 
   return (
-    <div>
-      <ButtonRound icon={playing ? PauseIcon : PlayIcon} onClick={togglePlay} />
+    <div className="flex flex-col">
+      <div className="flex">
+        <ButtonRound
+          icon={playing ? PauseIcon : PlayIcon}
+          onClick={togglePlay}
+        />
+      </div>
     </div>
   );
 };
