@@ -1,26 +1,40 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Track as ITrack } from '../../../shared/types';
 import useArtists from '../../hooks/use-artists';
 import Track from '../../components/Track';
+import ShowcaseCarousel from '../../components/ShowcaseCarousel';
+import ShowcaseCarouselItem from '../../components/ShowcaseCarouselItem';
 
 const Artist = () => {
-  const { artists, getTracksByArtist } = useArtists();
+  const { artists, getTracksByArtist, getAlbumsByTracks } = useArtists();
   const params = useParams();
+  const [albums, setAlbums] = useState<Record<string, ITrack[]>>({});
 
-  const artistTracks = useMemo(() => {
-    if (!params.artist || !artists.includes(params.artist)) {
+  useEffect(() => {
+    const { artist } = params;
+
+    if (!artist || !artists.includes(artist)) {
       return [];
     }
 
-    return getTracksByArtist(params.artist);
-  }, [artists, params, getTracksByArtist]);
+    const artistTracks = getTracksByArtist(artist);
+    const albumDictionary = getAlbumsByTracks(artistTracks);
+    setAlbums(albumDictionary);
+  }, [artists, params]);
 
   return (
     <div>
       <h1>Artist {params.artist}</h1>
-      {artistTracks.map((track) => (
-        <Track key={track.path} track={track} />
-      ))}
+      <ShowcaseCarousel title="Albums">
+        {Object.entries(albums).map(([album, tracks]) => (
+          <ShowcaseCarouselItem
+            key={album}
+            title={album}
+            img={tracks[0].cover ?? ''}
+          />
+        ))}
+      </ShowcaseCarousel>
     </div>
   );
 };
