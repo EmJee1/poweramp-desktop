@@ -1,6 +1,6 @@
-import FooterTrackMetadata from '../FooterTrackMetadata';
-import FooterTrackControls from '../FooterTrackControls';
-import FooterGlobalControls from '../FooterGlobalControls';
+import FooterTrackMetadata from './FooterTrackMetadata';
+import FooterTrackControls from './FooterTrackControls';
+import FooterGlobalControls from './FooterGlobalControls';
 
 const Footer = () => {
   return (

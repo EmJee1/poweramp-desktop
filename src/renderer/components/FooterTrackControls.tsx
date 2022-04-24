@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { PlayIcon, PauseIcon } from '@heroicons/react/outline';
-import ButtonRound from '../ButtonRound';
-import PlayerContext from '../../context/player';
-import useAudio from '../../hooks/use-audio';
+import ButtonRound from './ButtonRound';
+import PlayerContext from '../context/player';
+import useAudio from '../hooks/use-audio';
 
 const FooterTrackControls = () => {
   const { audioElement, currentTrack } = useContext(PlayerContext);

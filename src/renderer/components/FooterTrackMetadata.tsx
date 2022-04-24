@@ -1,6 +1,6 @@
-import { useContext, useMemo } from 'react';
-import PlayerContext from '../../context/player';
 import { Link } from 'react-router-dom';
+import { useContext, useMemo } from 'react';
+import PlayerContext from '../context/player';
 
 const FooterTrackMetadata = () => {
   const { currentTrack } = useContext(PlayerContext);

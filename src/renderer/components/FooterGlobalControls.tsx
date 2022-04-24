@@ -1,8 +1,8 @@
 import { ChangeEvent, useContext } from 'react';
 import { VolumeOffIcon, VolumeUpIcon } from '@heroicons/react/outline';
-import PlayerContext from '../../context/player';
-import ButtonRound from '../ButtonRound';
-import useAudio from '../../hooks/use-audio';
+import PlayerContext from '../context/player';
+import ButtonRound from './ButtonRound';
+import useAudio from '../hooks/use-audio';
 
 const FooterGlobalControls = () => {
   const { audioElement } = useContext(PlayerContext);

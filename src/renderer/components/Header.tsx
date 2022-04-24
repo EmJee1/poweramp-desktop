@@ -5,8 +5,8 @@ import {
   CogIcon,
   HomeIcon,
 } from '@heroicons/react/outline';
-import ButtonRound from '../ButtonRound';
-import HeaderSearchbar from '../HeaderSearchbar';
+import ButtonRound from './ButtonRound';
+import HeaderSearchbar from './HeaderSearchbar';
 
 const Header = () => {
   const navigate = useNavigate();

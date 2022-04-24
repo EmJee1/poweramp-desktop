@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { Track as ITrack } from '../../../shared/types';
-import PlayerContext from '../../context/player';
+import { Track as ITrack } from '../../shared/types';
+import PlayerContext from '../context/player';
 
 interface TrackProps {
   track: ITrack;
