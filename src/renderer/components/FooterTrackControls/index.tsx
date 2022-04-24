@@ -5,7 +5,7 @@ import PlayerContext from '../../context/player';
 import useAudio from '../../hooks/use-audio';
 
 const FooterTrackControls = () => {
-  const { audioElement } = useContext(PlayerContext);
+  const { audioElement, currentTrack } = useContext(PlayerContext);
   const { playing } = useAudio();
 
   const togglePlay = () =>
@@ -16,6 +16,7 @@ const FooterTrackControls = () => {
       <div className="flex">
         <ButtonRound
           icon={playing ? PauseIcon : PlayIcon}
+          disabled={!currentTrack}
           onClick={togglePlay}
         />
       </div>
