@@ -32,9 +32,20 @@ const useArtists = () => {
     return albumsDictionary;
   };
 
+  const getAlbumTracks = (
+    tracksToSearch: Track[],
+    album: string,
+    albumartist: string
+  ) => {
+    return tracksToSearch.filter(
+      (track) => track.album === album && track.albumartist === albumartist
+    );
+  };
+
   return {
     getAlbumsByTracks,
     getTracksByArtist,
+    getAlbumTracks,
     artists,
   };
 };

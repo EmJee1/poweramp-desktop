@@ -31,6 +31,7 @@ const Artist = () => {
             key={album}
             title={album}
             img={tracks[0].cover ?? ''}
+            to={`/artist/${tracks[0].albumartist}/album/${tracks[0].album}`}
           />
         ))}
       </ShowcaseGrid>

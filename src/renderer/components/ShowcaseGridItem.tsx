@@ -1,16 +1,22 @@
+import { Link, To } from 'react-router-dom';
+
 interface ShowcaseCarouselItemProps {
   img: string;
   title: string;
+  to: To;
 }
 
-const ShowcaseGridItem = ({ img, title }: ShowcaseCarouselItemProps) => {
+const ShowcaseGridItem = ({ img, title, to }: ShowcaseCarouselItemProps) => {
   return (
-    <div className="aspect-square cursor-pointer rounded bg-slate-600/5 p-4 transition-transform hover:scale-105">
+    <Link
+      className="aspect-square cursor-pointer rounded bg-slate-600/5 p-4 transition-transform hover:scale-105"
+      to={to}
+    >
       <img src={img} alt="" className="mb-2 h-full rounded" />
-      <h6 className="overflow-hidden overflow-ellipsis whitespace-nowrap font-bold">
+      <span className="block overflow-hidden overflow-ellipsis whitespace-nowrap font-bold">
         {title}
-      </h6>
-    </div>
+      </span>
+    </Link>
   );
 };
 

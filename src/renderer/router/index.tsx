@@ -4,6 +4,7 @@ import Settings from '../views/Settings';
 import Artist from '../views/Artist';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Album from '../views/Artist/Album';
 
 const Router = () => {
   return (
@@ -13,6 +14,7 @@ const Router = () => {
         <Route path="/" element={<Home />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/artist/:artist" element={<Artist />} />
+        <Route path="/artist/:artist/album/:album" element={<Album />} />
       </Routes>
       <Footer />
     </MemoryRouter>
