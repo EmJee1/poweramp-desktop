@@ -16,10 +16,10 @@ const useArtists = () => {
     return tracks.filter((track) => track.artists?.includes(artist));
   };
 
-  const getAlbumsByTracks = (tracks: Track[]) => {
+  const getAlbumsByTracks = (tracksToSearch: Track[]) => {
     const albumsDictionary: Record<string, Track[]> = {};
 
-    tracks.forEach((track) => {
+    tracksToSearch.forEach((track) => {
       if (!track.album) return;
 
       if (!albumsDictionary[track.album]) {
