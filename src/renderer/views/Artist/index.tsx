@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Track as ITrack } from '../../../shared/types';
 import useArtists from '../../hooks/use-artists';
-import ShowcaseCarousel from '../../components/ShowcaseCarousel';
-import ShowcaseCarouselItem from '../../components/ShowcaseCarouselItem';
+import ShowcaseGrid from '../../components/ShowcaseGrid';
+import ShowcaseGridItem from '../../components/ShowcaseGridItem';
 
 const Artist = () => {
   const { artists, getTracksByArtist, getAlbumsByTracks } = useArtists();
@@ -25,15 +25,15 @@ const Artist = () => {
   return (
     <div>
       <h1>Artist {params.artist}</h1>
-      <ShowcaseCarousel title="Albums">
+      <ShowcaseGrid title="Albums">
         {Object.entries(albums).map(([album, tracks]) => (
-          <ShowcaseCarouselItem
+          <ShowcaseGridItem
             key={album}
             title={album}
             img={tracks[0].cover ?? ''}
           />
         ))}
-      </ShowcaseCarousel>
+      </ShowcaseGrid>
     </div>
   );
 };
