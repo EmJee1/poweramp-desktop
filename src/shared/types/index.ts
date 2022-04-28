@@ -11,3 +11,6 @@ export interface Track {
   cover?: string;
   album?: string;
 }
+export interface Cache {
+  artists: string[];
+}

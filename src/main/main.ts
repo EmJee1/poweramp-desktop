@@ -18,6 +18,7 @@ import { handleDialogOpenFolder } from './ipc/dialog';
 import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
 import { handleTracksGet, handleTracksScan } from './ipc/tracks';
 import powerampProtocolHandler from './protocol';
+import { handleFeaturedArtistsGet } from './ipc/featured';
 
 export default class AppUpdater {
   constructor() {
@@ -130,6 +131,7 @@ app
     ipcMain.handle('settings:get', handleSettingsGet);
     ipcMain.handle('tracks:scan', handleTracksScan);
     ipcMain.handle('tracks:get', handleTracksGet);
+    ipcMain.handle('featured:artists:get', handleFeaturedArtistsGet);
 
     protocol.registerFileProtocol('poweramp', powerampProtocolHandler);
 
