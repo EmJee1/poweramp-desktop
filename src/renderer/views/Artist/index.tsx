@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Track as ITrack } from '../../../shared/types';
+import { TrackItem } from '../../../shared/types';
 import useArtists from '../../hooks/use-artists';
 import ShowcaseGrid from '../../components/ShowcaseGrid';
 import ShowcaseGridItem from '../../components/ShowcaseGridItem';
@@ -8,7 +8,7 @@ import ShowcaseGridItem from '../../components/ShowcaseGridItem';
 const Artist = () => {
   const { artists, getTracksByArtist, getAlbumsByTracks } = useArtists();
   const params = useParams();
-  const [albums, setAlbums] = useState<Record<string, ITrack[]>>({});
+  const [albums, setAlbums] = useState<Record<string, TrackItem[]>>({});
 
   useEffect(() => {
     const { artist } = params;

@@ -2,14 +2,14 @@ import { useContext, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useArtists from '../../hooks/use-artists';
 import TracksContext from '../../context/tracks';
-import { Track } from '../../../shared/types';
+import { TrackItem } from '../../../shared/types';
 import Table from '../../components/Table';
 import Link from '../../components/Link';
 
 const Album = () => {
   const { tracks } = useContext(TracksContext);
   const { artists, getAlbumTracks } = useArtists();
-  const [albumTracks, setAlbumTracks] = useState<Track[]>([]);
+  const [albumTracks, setAlbumTracks] = useState<TrackItem[]>([]);
   const params = useParams();
 
   useEffect(() => {

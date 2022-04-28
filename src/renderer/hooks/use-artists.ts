@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 import TracksContext from '../context/tracks';
-import { Track } from '../../shared/types';
+import { TrackItem } from '../../shared/types';
 
 const useArtists = () => {
   const { tracks } = useContext(TracksContext);
@@ -16,8 +16,8 @@ const useArtists = () => {
     return tracks.filter((track) => track.artists?.includes(artist));
   };
 
-  const getAlbumsByTracks = (tracksToSearch: Track[]) => {
-    const albumsDictionary: Record<string, Track[]> = {};
+  const getAlbumsByTracks = (tracksToSearch: TrackItem[]) => {
+    const albumsDictionary: Record<string, TrackItem[]> = {};
 
     tracksToSearch.forEach((track) => {
       if (!track.album) return;
@@ -33,7 +33,7 @@ const useArtists = () => {
   };
 
   const getAlbumTracks = (
-    tracksToSearch: Track[],
+    tracksToSearch: TrackItem[],
     album: string,
     albumartist: string
   ) => {

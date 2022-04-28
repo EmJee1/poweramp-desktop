@@ -1,13 +1,13 @@
-import { Settings, Track } from '../shared/types';
+import { Settings, SettingsItem, TrackItem } from '../shared/types';
 
 declare global {
   interface Window {
     electronAPI: {
       openFolder: () => Promise<null | string>;
       updateSettings: (settings: Partial<Settings>) => Promise<void>;
-      getSettings: () => Promise<Settings>;
+      getSettings: () => Promise<SettingsItem>;
       scanTracks: () => Promise<void>;
-      getTracks: () => Promise<Track[]>;
+      getTracks: () => Promise<TrackItem[]>;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on(channel: string, func: (...args: any[]) => void): void;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

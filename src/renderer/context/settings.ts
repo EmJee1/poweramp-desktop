@@ -1,9 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { Settings } from '../../shared/types';
+import { SettingsItem } from '../../shared/types';
 
 export interface ISettingsContext {
-  settings: Settings;
-  setSettings: Dispatch<SetStateAction<Settings>>;
+  settings: SettingsItem;
+  setSettings: Dispatch<SetStateAction<SettingsItem>>;
 }
 
 // @ts-expect-error default settings context value is set in the provider
