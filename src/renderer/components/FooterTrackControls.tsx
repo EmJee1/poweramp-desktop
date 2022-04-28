@@ -18,6 +18,7 @@ const FooterTrackControls = () => {
           icon={playing ? PauseIcon : PlayIcon}
           disabled={!currentTrack}
           onClick={togglePlay}
+          small
         />
       </div>
       <input type="range" min={0} max={duration} value={currentTime} />
