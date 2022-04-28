@@ -8,4 +8,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getSettings: () => ipcRenderer.invoke('settings:get'),
   scanTracks: () => ipcRenderer.invoke('tracks:scan'),
   getTracks: () => ipcRenderer.invoke('tracks:get'),
+  getFeaturedArtists: () => ipcRenderer.invoke('featured:artists:get'),
 });
