@@ -1,9 +1,9 @@
 import db from '../../db/connection';
-import { Track, TrackItem } from '../../shared/types';
+import { Artist, Track, TrackItem } from '../../shared/types';
 import { getSettings } from './settings';
 import { allowedFiletypes, recursiveLibraryScanDepth } from '../../constants';
 import { scanDirectoryRecursively } from '../util/filesystem';
-import { updateCache } from '../util/cache';
+import { getArtistsFromTracks } from '../util/artists';
 
 export const handleTracksScan = async () => {
   const settings = await getSettings();
@@ -23,9 +23,11 @@ export const handleTracksScan = async () => {
   await db.tracks.persistence.compactDatafile();
   await db.tracks.insert<Track>(scanned);
 
-  const artists = scanned.flatMap((s) => s.artists).filter(Boolean) as string[];
-  const uniqueArtists = Array.from(new Set(artists));
-  await updateCache({ artists: uniqueArtists });
+  const artists = getArtistsFromTracks(scanned);
+
+  await db.artists.remove({}, { multi: true });
+  await db.artists.persistence.compactDatafile();
+  await db.artists.insert<Artist>(artists);
 };
 
 export const handleTracksGet = async () => {

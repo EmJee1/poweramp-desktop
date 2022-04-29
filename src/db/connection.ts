@@ -12,6 +12,7 @@ const db = {
   tracks: Datastore.create(getDatabasePath('tracks')),
   settings: Datastore.create(getDatabasePath('settings')),
   cache: Datastore.create(getDatabasePath('cache')),
+  artists: Datastore.create(getDatabasePath('artists')),
 };
 
 export default db;

@@ -18,6 +18,13 @@ export interface Cache {
   artists: string[];
 }
 
+export interface Artist {
+  name: string;
+  image?: string;
+  tracksAmount: number;
+}
+
 export type SettingsItem = WithId<Settings>;
 export type TrackItem = WithId<Track>;
 export type CacheItem = WithId<Cache>;
+export type ArtistItem = WithId<Artist>;
