@@ -7,7 +7,7 @@ const ShowcaseList = ({ title, children }: ShowcaseListProps) => {
   return (
     <div>
       <h3>{title}</h3>
-      <ul>{children}</ul>
+      <ul className="flex flex-col gap-4">{children}</ul>
     </div>
   );
 };

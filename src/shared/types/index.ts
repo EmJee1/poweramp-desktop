@@ -14,10 +14,6 @@ export interface Track {
   album?: string;
 }
 
-export interface Cache {
-  artists: string[];
-}
-
 export interface Artist {
   name: string;
   image?: string;
@@ -26,5 +22,4 @@ export interface Artist {
 
 export type SettingsItem = WithId<Settings>;
 export type TrackItem = WithId<Track>;
-export type CacheItem = WithId<Cache>;
 export type ArtistItem = WithId<Artist>;

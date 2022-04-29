@@ -1,4 +1,4 @@
-import { Settings, SettingsItem, TrackItem } from '../shared/types';
+import { ArtistItem, Settings, SettingsItem, TrackItem } from '../shared/types';
 
 declare global {
   interface Window {
@@ -8,7 +8,7 @@ declare global {
       getSettings: () => Promise<SettingsItem>;
       scanTracks: () => Promise<void>;
       getTracks: () => Promise<TrackItem[]>;
-      getFeaturedArtists: () => Promise<string[]>;
+      getFeaturedArtists: () => Promise<ArtistItem[]>;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on(channel: string, func: (...args: any[]) => void): void;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

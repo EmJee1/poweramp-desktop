@@ -1,4 +1,5 @@
 import { Artist, Track, TrackItem } from '../../shared/types';
+import db from '../../db/connection';
 
 export const getArtistsFromTracks = (tracks: (Track | TrackItem)[]) => {
   const artistsArray = tracks
@@ -19,4 +20,12 @@ export const getArtistsFromTracks = (tracks: (Track | TrackItem)[]) => {
   });
 
   return artists;
+};
+
+export const getArtists = () => {
+  return db.artists.find({});
+};
+
+export const getFeaturedArtists = () => {
+  return db.artists.find({}).limit(4).sort({ tracksAmount: -1 });
 };

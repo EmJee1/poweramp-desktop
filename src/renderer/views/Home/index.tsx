@@ -3,11 +3,12 @@ import TracksContext from '../../context/tracks';
 import PlayerContext from '../../context/player';
 import ShowcaseList from '../../components/ShowcaseList';
 import ShowcaseListItem from '../../components/ShowcaseListItem';
+import { ArtistItem } from '../../../shared/types';
 
 const Home = () => {
   const { tracks } = useContext(TracksContext);
   const { setCurrentTrack } = useContext(PlayerContext);
-  const [featuredArtists, setFeaturedArtists] = useState<string[]>([]);
+  const [featuredArtists, setFeaturedArtists] = useState<ArtistItem[]>([]);
 
   useEffect(() => {
     const getFeaturedArtists = async () => {
@@ -24,9 +25,10 @@ const Home = () => {
       <ShowcaseList title="Featured artists">
         {featuredArtists.map((artist) => (
           <ShowcaseListItem
-            key={artist}
-            title={artist}
-            to={`/artist/${artist}`}
+            key={artist._id}
+            title={artist.name}
+            subtitle={`${artist.tracksAmount} songs`}
+            to={`/artist/${artist.name}`}
           />
         ))}
       </ShowcaseList>

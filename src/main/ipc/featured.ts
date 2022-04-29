@@ -1,6 +1,5 @@
-import { getCache } from '../util/cache';
+import { getFeaturedArtists } from '../util/artists';
 
 export const handleFeaturedArtistsGet = async () => {
-  const cache = await getCache();
-  return cache.artists.slice(0, 6);
+  return getFeaturedArtists();
 };
