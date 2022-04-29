@@ -24,7 +24,8 @@ export const handleTracksScan = async () => {
   await db.tracks.insert<Track>(scanned);
 
   const artists = scanned.flatMap((s) => s.artists).filter(Boolean) as string[];
-  await updateCache({ artists });
+  const uniqueArtists = Array.from(new Set(artists));
+  await updateCache({ artists: uniqueArtists });
 };
 
 export const handleTracksGet = async () => {
