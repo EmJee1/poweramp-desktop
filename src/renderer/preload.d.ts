@@ -9,6 +9,7 @@ declare global {
       scanTracks: () => Promise<void>;
       getTracks: () => Promise<TrackItem[]>;
       getFeaturedArtists: () => Promise<ArtistItem[]>;
+      getTracksByArtist: (artist: string) => Promise<TrackItem[]>;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on(channel: string, func: (...args: any[]) => void): void;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

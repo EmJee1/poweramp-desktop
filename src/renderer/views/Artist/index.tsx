@@ -4,23 +4,39 @@ import { TrackItem } from '../../../shared/types';
 import useArtists from '../../hooks/use-artists';
 import ShowcaseGrid from '../../components/ShowcaseGrid';
 import ShowcaseGridItem from '../../components/ShowcaseGridItem';
+import ArtistUnknown from './ArtistUnknown';
 
 const Artist = () => {
-  const { artists, getTracksByArtist, getAlbumsByTracks } = useArtists();
   const params = useParams();
+  const { getAlbumsByTracks } = useArtists();
+  const [artistUnknown, setArtistUnknown] = useState(false);
   const [albums, setAlbums] = useState<Record<string, TrackItem[]>>({});
 
   useEffect(() => {
     const { artist } = params;
 
-    if (!artist || !artists.includes(artist)) {
+    if (!artist) {
+      setArtistUnknown(true);
       return;
     }
 
-    const artistTracks = getTracksByArtist(artist);
-    const albumDictionary = getAlbumsByTracks(artistTracks);
-    setAlbums(albumDictionary);
-  }, [artists, params]);
+    const getAlbums = async () => {
+      const tracks = await window.electronAPI.getTracksByArtist(artist);
+
+      if (!tracks.length) {
+        setArtistUnknown(true);
+        return;
+      }
+
+      setAlbums(getAlbumsByTracks(tracks));
+    };
+
+    getAlbums();
+  }, [params]);
+
+  if (artistUnknown) {
+    return <ArtistUnknown />;
+  }
 
   return (
     <div>

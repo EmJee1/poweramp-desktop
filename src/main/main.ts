@@ -16,7 +16,11 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { handleDialogOpenFolder } from './ipc/dialog';
 import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
-import { handleTracksGet, handleTracksScan } from './ipc/tracks';
+import {
+  handleArtistTracksGet,
+  handleTracksGet,
+  handleTracksScan,
+} from './ipc/tracks';
 import powerampProtocolHandler from './protocol';
 import { handleFeaturedArtistsGet } from './ipc/featured';
 
@@ -132,6 +136,7 @@ app
     ipcMain.handle('tracks:scan', handleTracksScan);
     ipcMain.handle('tracks:get', handleTracksGet);
     ipcMain.handle('featured:artists:get', handleFeaturedArtistsGet);
+    ipcMain.handle('artist:tracks:get', handleArtistTracksGet);
 
     protocol.registerFileProtocol('poweramp', powerampProtocolHandler);
 

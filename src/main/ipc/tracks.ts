@@ -1,3 +1,4 @@
+import { IpcMainInvokeEvent } from 'electron';
 import db from '../../db/connection';
 import { Artist, Track, TrackItem } from '../../shared/types';
 import { getSettings } from './settings';
@@ -32,4 +33,11 @@ export const handleTracksScan = async () => {
 
 export const handleTracksGet = async () => {
   return db.tracks.find<TrackItem>({});
+};
+
+export const handleArtistTracksGet = async (
+  _event: IpcMainInvokeEvent,
+  artist: string
+) => {
+  return db.tracks.find<TrackItem>({ artists: { $elemMatch: artist } });
 };
