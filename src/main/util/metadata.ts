@@ -5,7 +5,18 @@ import { metadataArtistsSeparator } from '../../constants';
 export const extractMetadata = async (
   filePath: string
 ): Promise<
-  Pick<Track, 'title' | 'albumartist' | 'artists' | 'genre' | 'cover' | 'album'>
+  Pick<
+    Track,
+    | 'title'
+    | 'albumartist'
+    | 'artists'
+    | 'genre'
+    | 'cover'
+    | 'album'
+    | 'year'
+    | 'trackTotal'
+    | 'trackNumber'
+  >
 > => {
   const { common } = await mm.parseFile(filePath);
 
@@ -32,5 +43,8 @@ export const extractMetadata = async (
     genre: common.genre,
     cover: base64Cover,
     album: common.album,
+    year: common.year,
+    trackTotal: common.track.of ?? undefined,
+    trackNumber: common.track.no ?? undefined,
   };
 };
