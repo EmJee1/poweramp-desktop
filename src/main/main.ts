@@ -19,7 +19,6 @@ import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
 import {
   handleAlbumTracksGet,
   handleArtistTracksGet,
-  handleTracksGet,
   handleTracksScan,
 } from './ipc/tracks';
 import powerampProtocolHandler from './protocol';
@@ -135,7 +134,6 @@ app
     ipcMain.handle('settings:update', handleSettingsUpdate);
     ipcMain.handle('settings:get', handleSettingsGet);
     ipcMain.handle('tracks:scan', handleTracksScan);
-    ipcMain.handle('tracks:get', handleTracksGet);
     ipcMain.handle('featured:artists:get', handleFeaturedArtistsGet);
     ipcMain.handle('artist:tracks:get', handleArtistTracksGet);
     ipcMain.handle('album:tracks:get', handleAlbumTracksGet);

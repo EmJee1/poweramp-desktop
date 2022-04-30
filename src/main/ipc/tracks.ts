@@ -31,10 +31,6 @@ export const handleTracksScan = async () => {
   await db.artists.insert<Artist>(artists);
 };
 
-export const handleTracksGet = async () => {
-  return db.tracks.find<TrackItem>({});
-};
-
 export const handleArtistTracksGet = async (
   _event: IpcMainInvokeEvent,
   artist: string

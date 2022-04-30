@@ -7,7 +7,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.invoke('settings:update', settings),
   getSettings: () => ipcRenderer.invoke('settings:get'),
   scanTracks: () => ipcRenderer.invoke('tracks:scan'),
-  getTracks: () => ipcRenderer.invoke('tracks:get'),
   getFeaturedArtists: () => ipcRenderer.invoke('featured:artists:get'),
   getTracksByArtist: (artist: string) =>
     ipcRenderer.invoke('artist:tracks:get', artist),

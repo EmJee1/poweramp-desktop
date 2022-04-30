@@ -7,7 +7,6 @@ declare global {
       updateSettings: (settings: Partial<Settings>) => Promise<void>;
       getSettings: () => Promise<SettingsItem>;
       scanTracks: () => Promise<void>;
-      getTracks: () => Promise<TrackItem[]>;
       getFeaturedArtists: () => Promise<ArtistItem[]>;
       getTracksByArtist: (artist: string) => Promise<TrackItem[]>;
       getTracksByAlbum: (

@@ -1,10 +1,8 @@
 import { useContext } from 'react';
 import SettingsContext from '../../context/settings';
-import TracksContext from '../../context/tracks';
 
 const Settings = () => {
   const { settings, setSettings } = useContext(SettingsContext);
-  const { tracks, setTracks } = useContext(TracksContext);
 
   const onFolderSelect = async () => {
     const filePath = await window.electronAPI.openFolder();
@@ -20,8 +18,6 @@ const Settings = () => {
 
   const onFolderScan = async () => {
     await window.electronAPI.scanTracks();
-    const newTracks = await window.electronAPI.getTracks();
-    setTracks(newTracks);
   };
 
   return (
@@ -35,7 +31,6 @@ const Settings = () => {
       </button>
       <h4>Settings:</h4>
       <p>Selected folder: {settings.audioDirectories}</p>
-      <p>Scanned tracks: {tracks.length}</p>
     </div>
   );
 };
