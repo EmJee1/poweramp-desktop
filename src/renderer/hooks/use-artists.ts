@@ -12,10 +12,6 @@ const useArtists = () => {
     return Array.from(new Set(allArtists));
   }, [tracks]);
 
-  const getTracksByArtist = (artist: string) => {
-    return tracks.filter((track) => track.artists?.includes(artist));
-  };
-
   const getAlbumsByTracks = (tracksToSearch: TrackItem[]) => {
     const albumsDictionary: Record<string, TrackItem[]> = {};
 
@@ -44,7 +40,6 @@ const useArtists = () => {
 
   return {
     getAlbumsByTracks,
-    getTracksByArtist,
     getAlbumTracks,
     artists,
   };
