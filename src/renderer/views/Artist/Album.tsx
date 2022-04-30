@@ -51,7 +51,11 @@ const Album = () => {
         {albumTracks.map((track) => (
           <tr className="border-8" key={track._id}>
             <td className="">
-              <button type="button" onClick={() => setCurrentTrack(track)}>
+              <button
+                type="button"
+                className="text-left"
+                onClick={() => setCurrentTrack(track)}
+              >
                 {track.title}
               </button>
             </td>
