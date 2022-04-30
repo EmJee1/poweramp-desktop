@@ -17,19 +17,8 @@ const useArtists = () => {
     return albumsDictionary;
   };
 
-  const getAlbumTracks = (
-    tracksToSearch: TrackItem[],
-    album: string,
-    albumartist: string
-  ) => {
-    return tracksToSearch.filter(
-      (track) => track.album === album && track.albumartist === albumartist
-    );
-  };
-
   return {
     getAlbumsByTracks,
-    getAlbumTracks,
   };
 };
 
