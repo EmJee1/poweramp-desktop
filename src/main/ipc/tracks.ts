@@ -41,3 +41,11 @@ export const handleArtistTracksGet = async (
 ) => {
   return db.tracks.find<TrackItem>({ artists: { $elemMatch: artist } });
 };
+
+export const handleAlbumTracksGet = async (
+  _event: IpcMainInvokeEvent,
+  albumartist: string,
+  album: string
+) => {
+  return db.tracks.find<TrackItem>({ albumartist, album });
+};

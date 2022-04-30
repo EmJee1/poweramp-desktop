@@ -17,6 +17,7 @@ import { resolveHtmlPath } from './util';
 import { handleDialogOpenFolder } from './ipc/dialog';
 import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
 import {
+  handleAlbumTracksGet,
   handleArtistTracksGet,
   handleTracksGet,
   handleTracksScan,
@@ -137,6 +138,7 @@ app
     ipcMain.handle('tracks:get', handleTracksGet);
     ipcMain.handle('featured:artists:get', handleFeaturedArtistsGet);
     ipcMain.handle('artist:tracks:get', handleArtistTracksGet);
+    ipcMain.handle('album:tracks:get', handleAlbumTracksGet);
 
     protocol.registerFileProtocol('poweramp', powerampProtocolHandler);
 

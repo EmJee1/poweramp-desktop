@@ -1,26 +1,26 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useArtists from '../../hooks/use-artists';
-import TracksContext from '../../context/tracks';
 import { TrackItem } from '../../../shared/types';
 import Table from '../../components/Table';
 import Link from '../../components/Link';
 
 const Album = () => {
-  const { tracks } = useContext(TracksContext);
-  const { artists, getAlbumTracks } = useArtists();
   const [albumTracks, setAlbumTracks] = useState<TrackItem[]>([]);
   const params = useParams();
 
   useEffect(() => {
     const { artist, album } = params;
 
-    if (!artist || !artists.includes(artist) || !album) {
+    if (!artist || !album) {
       return;
     }
 
-    setAlbumTracks(getAlbumTracks(tracks, album, artist));
-  }, [params, artists, tracks]);
+    const getTracks = async () => {
+      setAlbumTracks(await window.electronAPI.getTracksByAlbum(artist, album));
+    };
+
+    getTracks();
+  }, [params]);
 
   const image = useMemo(() => {
     if (!albumTracks.length) {
@@ -47,7 +47,7 @@ const Album = () => {
       </div>
       <Table headerItems={['Title', 'Artists']}>
         {albumTracks.map((track) => (
-          <tr className="border-8">
+          <tr className="border-8" key={track._id}>
             <td className="">{track.title}</td>
             <td className="flex gap-1">
               {track.artists

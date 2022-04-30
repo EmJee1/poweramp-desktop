@@ -11,4 +11,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getFeaturedArtists: () => ipcRenderer.invoke('featured:artists:get'),
   getTracksByArtist: (artist: string) =>
     ipcRenderer.invoke('artist:tracks:get', artist),
+  getTracksByAlbum: (albumartist: string, album: string) =>
+    ipcRenderer.invoke('album:tracks:get', albumartist, album),
 });
