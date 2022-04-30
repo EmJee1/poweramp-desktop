@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TrackItem } from '../../../shared/types';
 import Table from '../../components/Table';
 import Link from '../../components/Link';
+import PlayerContext from '../../context/player';
 
 const Album = () => {
+  const { setCurrentTrack } = useContext(PlayerContext);
   const [albumTracks, setAlbumTracks] = useState<TrackItem[]>([]);
   const params = useParams();
 
@@ -48,18 +50,22 @@ const Album = () => {
       <Table headerItems={['Title', 'Artists']}>
         {albumTracks.map((track) => (
           <tr className="border-8" key={track._id}>
-            <td className="">{track.title}</td>
+            <td className="">
+              <button type="button" onClick={() => setCurrentTrack(track)}>
+                {track.title}
+              </button>
+            </td>
             <td className="flex gap-1">
               {track.artists
                 ? track.artists.map((artist, i, arr) => (
-                    <>
+                    <span key={artist}>
                       <Link to={`/artist/${artist}`} small>
                         {artist}
                       </Link>
                       {i < arr.length - 1 && (
                         <span className="-ml-1 text-sm text-slate-800">,</span>
                       )}
-                    </>
+                    </span>
                   ))
                 : 'Unknown'}
             </td>
