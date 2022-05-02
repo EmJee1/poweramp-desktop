@@ -8,33 +8,24 @@ import ArtistUnknown from './ArtistUnknown';
 
 const Artist = () => {
   const params = useParams();
-  const { getAlbumsByTracks } = useArtists();
-  const [artistUnknown, setArtistUnknown] = useState(false);
-  const [albums, setAlbums] = useState<Record<string, TrackItem[]>>({});
+  const [tracks, setTracks] = useState<TrackItem[]>([]);
+  const { albums } = useArtists(tracks);
 
   useEffect(() => {
     const { artist } = params;
 
     if (!artist) {
-      setArtistUnknown(true);
       return;
     }
 
     const getAlbums = async () => {
-      const tracks = await window.electronAPI.getTracksByArtist(artist);
-
-      if (!tracks.length) {
-        setArtistUnknown(true);
-        return;
-      }
-
-      setAlbums(getAlbumsByTracks(tracks));
+      setTracks(await window.electronAPI.getTracksByArtist(artist));
     };
 
     getAlbums();
   }, [params]);
 
-  if (artistUnknown) {
+  if (!tracks.length) {
     return <ArtistUnknown />;
   }
 
@@ -42,13 +33,13 @@ const Artist = () => {
     <div>
       <h1>Artist {params.artist}</h1>
       <ShowcaseGrid title="Albums">
-        {Object.entries(albums).map(([album, tracks]) => (
+        {albums.map((album) => (
           <ShowcaseGridItem
-            key={album}
-            title={album}
-            subtitle={tracks[0].year?.toString() ?? undefined}
-            img={tracks[0].cover ?? ''}
-            to={`/artist/${tracks[0].albumartist}/album/${tracks[0].album}`}
+            key={album._id}
+            title={album.name ?? 'Unknown'}
+            subtitle={album.year?.toString() ?? undefined}
+            img={album.cover ?? ''}
+            to={`/artist/${album.albumartist}/album/${album.name}`}
           />
         ))}
       </ShowcaseGrid>

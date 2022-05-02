@@ -1,13 +1,15 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TrackItem } from '../../../shared/types';
 import Table from '../../components/Table';
 import Link from '../../components/Link';
 import PlayerContext from '../../context/player';
+import useArtists from '../../hooks/use-artists';
 
 const Album = () => {
   const { setCurrentTrack } = useContext(PlayerContext);
   const [albumTracks, setAlbumTracks] = useState<TrackItem[]>([]);
+  const { albumInfo } = useArtists(albumTracks);
   const params = useParams();
 
   useEffect(() => {
@@ -18,24 +20,17 @@ const Album = () => {
     }
 
     const getTracks = async () => {
-      setAlbumTracks(await window.electronAPI.getTracksByAlbum(artist, album));
+      const tracks = await window.electronAPI.getTracksByAlbum(artist, album);
+      setAlbumTracks(tracks);
     };
 
     getTracks();
   }, [params]);
 
-  const image = useMemo(() => {
-    if (!albumTracks.length) {
-      return undefined;
-    }
-
-    return albumTracks[0].cover;
-  }, [albumTracks]);
-
   return (
     <div>
       <div className="flex items-end gap-4">
-        <img src={image} alt="" className="h-48 w-48" />
+        <img src={albumInfo.cover} alt="" className="h-48 w-48" />
         <div>
           <h2 className="text-4xl font-bold">{params.album}</h2>
           <div className="flex gap-2">
@@ -43,7 +38,7 @@ const Album = () => {
               <Link to={`/artist/${params.artist}`}>{params.artist}</Link>
             )}
             <p className="flex scale-50 items-center text-xs">●</p>
-            <p>{albumTracks.length} songs</p>
+            <p>{albumInfo.trackTotal} songs</p>
           </div>
         </div>
       </div>
