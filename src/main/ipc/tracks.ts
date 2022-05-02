@@ -43,5 +43,7 @@ export const handleAlbumTracksGet = async (
   albumartist: string,
   album: string
 ) => {
-  return db.tracks.find<TrackItem>({ albumartist, album });
+  return db.tracks
+    .find<TrackItem>({ albumartist, album })
+    .sort({ trackNumber: 1 });
 };
