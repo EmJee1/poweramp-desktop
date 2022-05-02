@@ -30,23 +30,26 @@ const useArtists = (tracks: TrackItem[]) => {
    * Contains an array of albums, every value is used from the first track in the array that has the data.
    * TrackTotal has a fallback on the tracks array length.
    * It comes with the first track _id attached for list keying reasons.
+   * Sorted by year (high to low)
    */
   const albums = useMemo<(Album & { _id: string })[]>(() => {
-    return Object.entries(albumDictionary).map(([album, albumTracks]) => {
-      const trackTotal = albumTracks.find((t) => !!t.trackTotal);
-      const albumartist = albumTracks.find((t) => !!t.albumartist);
-      const year = albumTracks.find((t) => !!t.year);
-      const cover = albumTracks.find((t) => !!t.cover);
+    return Object.entries(albumDictionary)
+      .map(([album, albumTracks]) => {
+        const trackTotal = albumTracks.find((t) => !!t.trackTotal);
+        const albumartist = albumTracks.find((t) => !!t.albumartist);
+        const year = albumTracks.find((t) => !!t.year);
+        const cover = albumTracks.find((t) => !!t.cover);
 
-      return {
-        name: album,
-        trackTotal: trackTotal?.trackTotal ?? albumTracks.length,
-        albumartist: albumartist?.albumartist,
-        year: year?.year,
-        cover: cover?.cover,
-        _id: albumTracks[0]._id,
-      };
-    });
+        return {
+          name: album,
+          trackTotal: trackTotal?.trackTotal ?? albumTracks.length,
+          albumartist: albumartist?.albumartist,
+          year: year?.year,
+          cover: cover?.cover,
+          _id: albumTracks[0]._id,
+        };
+      })
+      .sort((a, b) => (b.year || 0) - (a.year || 0));
   }, [albumDictionary]);
 
   /**
