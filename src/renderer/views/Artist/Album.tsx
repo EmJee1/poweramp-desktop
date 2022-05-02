@@ -47,10 +47,11 @@ const Album = () => {
           </div>
         </div>
       </div>
-      <Table headerItems={['Title', 'Artists']}>
+      <Table headerItems={['#', 'Title', 'Artists']}>
         {albumTracks.map((track) => (
           <tr className="border-8" key={track._id}>
-            <td className="">
+            <td>{track.trackNumber}</td>
+            <td>
               <button
                 type="button"
                 className="text-left"
