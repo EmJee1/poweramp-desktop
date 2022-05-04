@@ -14,7 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { handleDialogOpenFolder } from './ipc/dialog';
+import { handleDialogOpenFolder, handleDialogOpenImage } from './ipc/dialog';
 import { handleSettingsGet, handleSettingsUpdate } from './ipc/settings';
 import {
   handleAlbumTracksGet,
@@ -131,6 +131,7 @@ app
   .whenReady()
   .then(() => {
     ipcMain.handle('dialog:openFolder', handleDialogOpenFolder);
+    ipcMain.handle('dialog:openImage', handleDialogOpenImage);
     ipcMain.handle('settings:update', handleSettingsUpdate);
     ipcMain.handle('settings:get', handleSettingsGet);
     ipcMain.handle('tracks:scan', handleTracksScan);

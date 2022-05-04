@@ -5,10 +5,12 @@ import useArtists from '../../hooks/use-artists';
 import ShowcaseGrid from '../../components/ShowcaseGrid';
 import ShowcaseGridItem from '../../components/ShowcaseGridItem';
 import ArtistUnknown from './ArtistUnknown';
+import Modal from '../../components/Modal';
 
 const Artist = () => {
   const params = useParams();
   const [tracks, setTracks] = useState<TrackItem[]>([]);
+  const [editArtist, setEditArtist] = useState(false);
   const { albums } = useArtists(tracks);
 
   useEffect(() => {
@@ -25,6 +27,11 @@ const Artist = () => {
     getAlbums();
   }, [params]);
 
+  const selectImage = async () => {
+    const image = await window.electronAPI.openImage();
+    console.log(image);
+  };
+
   if (!tracks.length) {
     return <ArtistUnknown />;
   }
@@ -32,6 +39,26 @@ const Artist = () => {
   return (
     <div>
       <h1>Artist {params.artist}</h1>
+      <button type="button" onClick={() => setEditArtist(true)}>
+        Edit
+      </button>
+      {editArtist && (
+        <Modal>
+          <form>
+            <label htmlFor="artist-name">Name</label>
+            <input
+              type="text"
+              id="artist-name"
+              value={params.artist}
+              disabled
+            />
+            <label htmlFor="artist-image">Artist image</label>
+            <button type="button" onClick={selectImage}>
+              Select file
+            </button>
+          </form>
+        </Modal>
+      )}
       <ShowcaseGrid title="Albums">
         {albums.map((album) => (
           <ShowcaseGridItem

@@ -3,6 +3,7 @@ import { Settings } from '../shared/types';
 
 contextBridge.exposeInMainWorld('electronAPI', {
   openFolder: () => ipcRenderer.invoke('dialog:openFolder'),
+  openImage: () => ipcRenderer.invoke('dialog:openImage'),
   updateSettings: (settings: Partial<Settings>) =>
     ipcRenderer.invoke('settings:update', settings),
   getSettings: () => ipcRenderer.invoke('settings:get'),

@@ -4,6 +4,7 @@ declare global {
   interface Window {
     electronAPI: {
       openFolder: () => Promise<null | string>;
+      openImage: () => Promise<null | string>;
       updateSettings: (settings: Partial<Settings>) => Promise<void>;
       getSettings: () => Promise<SettingsItem>;
       scanTracks: () => Promise<void>;

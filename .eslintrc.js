@@ -8,6 +8,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
+    'jsx-a11y/label-has-associated-control': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,
