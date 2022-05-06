@@ -38,7 +38,7 @@ const Artist = () => {
         Edit
       </button>
       {editArtist && (
-        <Modal>
+        <Modal onClose={() => setEditArtist(false)}>
           <form>
             <label htmlFor="artist-name">Name</label>
             <input
