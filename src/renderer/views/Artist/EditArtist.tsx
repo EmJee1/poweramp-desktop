@@ -25,7 +25,7 @@ const EditArtist = ({ artist }: EditArtistProps) => {
         Edit
       </button>
       {editing && (
-        <Modal onClose={() => setEditing(false)}>
+        <Modal title="Edit artist" onClose={() => setEditing(false)}>
           <form>
             <label htmlFor="artist-name">Name</label>
             <input type="text" id="artist-name" value={artist.name} disabled />

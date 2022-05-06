@@ -1,16 +1,32 @@
+import CloseIcon from '../icons/CloseIcon';
+
 interface ModalProps {
+  title: string;
   onClose?: () => void;
   children: JSX.Element | JSX.Element[];
 }
 
-const Modal = ({ onClose, children }: ModalProps) => {
+const Modal = ({ title, onClose, children }: ModalProps) => {
   return (
     <div
       tabIndex={-1}
       className="fixed inset-0 flex items-center justify-center bg-black/50"
       onClick={() => onClose?.()}
     >
-      <div onClick={(e) => e.stopPropagation()} className="relative bg-white">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative max-w-2xl rounded-lg bg-white py-2 px-4 shadow"
+      >
+        <div className="flex items-center justify-between rounded-t p-4">
+          <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
+          <button
+            type="button"
+            onClick={() => onClose?.()}
+            className="rounded-lg p-1.5 text-slate-800 hover:bg-slate-200"
+          >
+            <CloseIcon />
+          </button>
+        </div>
         {children}
       </div>
     </div>
