@@ -28,8 +28,17 @@ const Artist = () => {
   }, [params]);
 
   const selectImage = async () => {
-    const image = await window.electronAPI.openImage();
-    console.log(image);
+    if (!params.artist) {
+      return;
+    }
+
+    const imagePath = await window.electronAPI.openImage();
+
+    if (!imagePath) {
+      return;
+    }
+
+    await window.electronAPI.updateArtistImage(params.artist, imagePath);
   };
 
   if (!tracks.length) {

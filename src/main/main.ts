@@ -21,8 +21,9 @@ import {
   handleArtistTracksGet,
   handleTracksScan,
 } from './ipc/tracks';
-import powerampProtocolHandler from './protocol';
 import { handleFeaturedArtistsGet } from './ipc/featured';
+import { handleArtistUpdateImage } from './ipc/artists';
+import powerampProtocolHandler from './protocol';
 
 export default class AppUpdater {
   constructor() {
@@ -135,6 +136,7 @@ app
     ipcMain.handle('settings:update', handleSettingsUpdate);
     ipcMain.handle('settings:get', handleSettingsGet);
     ipcMain.handle('tracks:scan', handleTracksScan);
+    ipcMain.handle('artist:update:image', handleArtistUpdateImage);
     ipcMain.handle('featured:artists:get', handleFeaturedArtistsGet);
     ipcMain.handle('artist:tracks:get', handleArtistTracksGet);
     ipcMain.handle('album:tracks:get', handleAlbumTracksGet);

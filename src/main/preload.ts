@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { Settings } from '../shared/types';
+import { Artist, Settings } from '../shared/types';
 
 contextBridge.exposeInMainWorld('electronAPI', {
   openFolder: () => ipcRenderer.invoke('dialog:openFolder'),
@@ -8,6 +8,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.invoke('settings:update', settings),
   getSettings: () => ipcRenderer.invoke('settings:get'),
   scanTracks: () => ipcRenderer.invoke('tracks:scan'),
+  updateArtistImage: (artistId: string, imagePath: string) =>
+    ipcRenderer.invoke('artist:update:image', artistId, imagePath),
   getFeaturedArtists: () => ipcRenderer.invoke('featured:artists:get'),
   getTracksByArtist: (artist: string) =>
     ipcRenderer.invoke('artist:tracks:get', artist),
