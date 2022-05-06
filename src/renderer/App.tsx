@@ -3,6 +3,7 @@ import SettingsContext, { ISettingsContext } from './context/settings';
 import PlayerContext, { IPlayerContext } from './context/player';
 import Router from './router';
 import 'tailwindcss/tailwind.css';
+import PageLoader from './components/PageLoader';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -41,6 +42,7 @@ const App = () => {
       <PlayerContext.Provider
         value={{ currentTrack, setCurrentTrack, audioElement }}
       >
+        {loading && <PageLoader />}
         {!loading && <Router />}
       </PlayerContext.Provider>
     </SettingsContext.Provider>

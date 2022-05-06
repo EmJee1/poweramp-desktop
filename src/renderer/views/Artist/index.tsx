@@ -12,7 +12,7 @@ const Artist = () => {
   const { tracks, exists, loading, artist } = useArtist(params.artist);
   const { albums } = useAlbums(tracks);
 
-  if (!loading) {
+  if (loading) {
     return <PageLoader />;
   }
 
