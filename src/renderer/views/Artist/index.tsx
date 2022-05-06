@@ -24,8 +24,17 @@ const Artist = () => {
 
   return (
     <div>
-      <h1>Artist {artist.name}</h1>
-      <EditArtist artist={artist} onChanged={refetchArtists} />
+      <div className="flex items-end gap-4">
+        <img src={artist.image} alt="" className="h-48 w-48" />
+        <div>
+          <h2 className="text-4xl font-bold">{artist.name}</h2>
+          <div className="flex gap-2">
+            <p>{artist.tracksAmount} songs</p>
+            <p className="flex scale-50 items-center text-xs">●</p>
+            <EditArtist artist={artist} onChanged={refetchArtists} />
+          </div>
+        </div>
+      </div>
       <ShowcaseGrid title="Albums">
         {albums.map((album) => (
           <ShowcaseGridItem
