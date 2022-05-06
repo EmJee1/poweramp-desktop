@@ -29,8 +29,6 @@ const useArtist = (artistName?: string) => {
         getTracks,
       ]);
 
-      console.log(artistResult);
-
       if (!artistResult) {
         setLoading(false);
         setTracks([]);

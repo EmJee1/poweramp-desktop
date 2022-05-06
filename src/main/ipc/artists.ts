@@ -8,7 +8,6 @@ export const handleArtistGet = async (
   _event: IpcMainInvokeEvent,
   artist: string
 ) => {
-  console.log(artist);
   return db.artists.findOne<Artist>({ name: artist });
 };
 
