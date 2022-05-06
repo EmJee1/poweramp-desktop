@@ -9,7 +9,9 @@ import EditArtist from './EditArtist';
 
 const Artist = () => {
   const params = useParams();
-  const { tracks, exists, loading, artist } = useArtist(params.artist);
+  const { tracks, exists, loading, artist, refetchArtists } = useArtist(
+    params.artist
+  );
   const { albums } = useAlbums(tracks);
 
   if (loading) {
@@ -23,7 +25,7 @@ const Artist = () => {
   return (
     <div>
       <h1>Artist {artist.name}</h1>
-      <EditArtist artist={artist} />
+      <EditArtist artist={artist} onChanged={refetchArtists} />
       <ShowcaseGrid title="Albums">
         {albums.map((album) => (
           <ShowcaseGridItem

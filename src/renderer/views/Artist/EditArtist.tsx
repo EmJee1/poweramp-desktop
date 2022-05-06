@@ -7,9 +7,10 @@ import SelectArtistImage from './SelectArtistImage';
 
 interface EditArtistProps {
   artist: ArtistItem;
+  onChanged?: () => void;
 }
 
-const EditArtist = ({ artist }: EditArtistProps) => {
+const EditArtist = ({ onChanged, artist }: EditArtistProps) => {
   const [editing, setEditing] = useState(false);
 
   return (
@@ -24,13 +25,17 @@ const EditArtist = ({ artist }: EditArtistProps) => {
               <FormInput id="name" value={artist.name} disabled />
             </FormField>
             <FormField label="Image">
-              <SelectArtistImage artist={artist} />
+              <SelectArtistImage artist={artist} onChanged={onChanged} />
             </FormField>
           </form>
         </Modal>
       )}
     </>
   );
+};
+
+EditArtist.defaultProps = {
+  onChanged: undefined,
 };
 
 export default EditArtist;

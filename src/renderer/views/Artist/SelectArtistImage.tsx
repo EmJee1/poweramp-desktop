@@ -3,9 +3,10 @@ import { ArtistItem } from '../../../shared/types';
 
 interface SelectArtistImageProps {
   artist: ArtistItem;
+  onChanged?: () => void;
 }
 
-const SelectArtistImage = ({ artist }: SelectArtistImageProps) => {
+const SelectArtistImage = ({ onChanged, artist }: SelectArtistImageProps) => {
   const selectImage = async () => {
     const imagePath = await window.electronAPI.openImage();
 
@@ -14,6 +15,8 @@ const SelectArtistImage = ({ artist }: SelectArtistImageProps) => {
     }
 
     await window.electronAPI.updateArtistImage(artist.name, imagePath);
+
+    onChanged?.();
   };
 
   if (!artist.image) {
@@ -39,6 +42,10 @@ const SelectArtistImage = ({ artist }: SelectArtistImageProps) => {
       </div>
     </div>
   );
+};
+
+SelectArtistImage.defaultProps = {
+  onChanged: undefined,
 };
 
 export default SelectArtistImage;

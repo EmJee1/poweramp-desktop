@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { ArtistItem, TrackItem } from '../../shared/types';
 
 const useArtist = (artistName?: string) => {
@@ -11,7 +18,7 @@ const useArtist = (artistName?: string) => {
   ];
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const refetchArtists = useCallback(() => {
     setLoading(true);
 
     if (!artistName) {
@@ -43,6 +50,10 @@ const useArtist = (artistName?: string) => {
     main();
   }, [artistName]);
 
+  useEffect(() => {
+    refetchArtists();
+  }, [refetchArtists]);
+
   const exists = useMemo(() => !!artist, [artist]);
 
   return {
@@ -50,6 +61,7 @@ const useArtist = (artistName?: string) => {
     tracks,
     exists,
     loading,
+    refetchArtists,
   };
 };
 
