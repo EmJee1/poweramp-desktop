@@ -6,7 +6,7 @@ interface ShowcaseCarouselProps {
 const ShowcaseGrid = ({ title, children }: ShowcaseCarouselProps) => {
   return (
     <div>
-      <h3>{title}</h3>
+      <h3 className="mb-4 text-xl font-bold">{title}</h3>
       <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 md:grid-cols-6">
         {children}
       </div>

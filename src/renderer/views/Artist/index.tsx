@@ -24,7 +24,7 @@ const Artist = () => {
 
   return (
     <div>
-      <div className="flex items-end gap-4">
+      <div className="mb-8 flex items-end gap-4">
         <img src={artist.image} alt="" className="h-48 w-48" />
         <div>
           <h2 className="text-4xl font-bold">{artist.name}</h2>
