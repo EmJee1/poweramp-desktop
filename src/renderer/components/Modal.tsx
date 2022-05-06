@@ -15,7 +15,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-2xl rounded-lg bg-white py-2 px-4 shadow"
+        className="max-w-32 relative w-1/2 rounded-lg bg-white py-2 px-4 shadow"
       >
         <div className="flex items-center justify-between rounded-t p-4">
           <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
@@ -27,7 +27,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
             <CloseIcon />
           </button>
         </div>
-        {children}
+        <div className="space-y-6 p-6">{children}</div>
       </div>
     </div>
   );
