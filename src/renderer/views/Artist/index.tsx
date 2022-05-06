@@ -24,7 +24,7 @@ const Artist = () => {
           <ShowcaseGridItem
             key={album._id}
             title={album.name ?? 'Unknown'}
-            subtitle={album.year?.toString() ?? undefined}
+            subtitle={album.year?.toString()}
             img={album.cover ?? ''}
             to={`/artist/${album.albumartist}/album/${album.name}`}
           />
