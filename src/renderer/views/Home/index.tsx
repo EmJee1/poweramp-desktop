@@ -22,6 +22,7 @@ const Home = () => {
           key={artist._id}
           title={artist.name}
           subtitle={`${artist.tracksAmount} songs`}
+          img={artist.image}
           to={`/artist/${artist.name}`}
         />
       ))}
