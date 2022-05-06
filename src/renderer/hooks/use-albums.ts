@@ -9,7 +9,7 @@ export interface Album {
   cover?: string;
 }
 
-const useArtists = (tracks: TrackItem[]) => {
+const useAlbums = (tracks: TrackItem[]) => {
   const albumDictionary = useMemo(() => {
     const albumsDictionary: Record<string, TrackItem[]> = {};
 
@@ -78,4 +78,4 @@ const useArtists = (tracks: TrackItem[]) => {
   };
 };
 
-export default useArtists;
+export default useAlbums;

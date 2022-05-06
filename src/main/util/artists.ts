@@ -22,13 +22,13 @@ export const getArtistsFromTracks = (tracks: (Track | TrackItem)[]) => {
   return artists;
 };
 
-export const getFeaturedArtists = () => {
+export const getFeaturedArtists = async () => {
   return db.artists.find({}).limit(4).sort({ tracksAmount: -1 });
 };
 
-export const updateArtist = (
+export const updateArtist = async (
   artistName: string,
   artist: Partial<Omit<Artist, 'name' | 'tracksAmount'>>
 ) => {
-  return db.artists.update<Artist>({ name: artistName }, artist);
+  return db.artists.update<Artist>({ name: artistName }, { $set: artist });
 };

@@ -4,12 +4,12 @@ import { TrackItem } from '../../../shared/types';
 import Table from '../../components/Table';
 import Link from '../../components/Link';
 import PlayerContext from '../../context/player';
-import useArtists from '../../hooks/use-artists';
+import useAlbums from '../../hooks/use-albums';
 
 const Album = () => {
   const { setCurrentTrack } = useContext(PlayerContext);
   const [albumTracks, setAlbumTracks] = useState<TrackItem[]>([]);
-  const { albumInfo } = useArtists(albumTracks);
+  const { albumInfo } = useAlbums(albumTracks);
   const params = useParams();
 
   useEffect(() => {

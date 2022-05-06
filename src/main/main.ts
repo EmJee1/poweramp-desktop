@@ -22,7 +22,7 @@ import {
   handleTracksScan,
 } from './ipc/tracks';
 import { handleFeaturedArtistsGet } from './ipc/featured';
-import { handleArtistUpdateImage } from './ipc/artists';
+import { handleArtistGet, handleArtistUpdateImage } from './ipc/artists';
 import powerampProtocolHandler from './protocol';
 
 export default class AppUpdater {
@@ -136,6 +136,7 @@ app
     ipcMain.handle('settings:update', handleSettingsUpdate);
     ipcMain.handle('settings:get', handleSettingsGet);
     ipcMain.handle('tracks:scan', handleTracksScan);
+    ipcMain.handle('artist:get', handleArtistGet); // ArtistItem | null (w/ promise)
     ipcMain.handle('artist:update:image', handleArtistUpdateImage);
     ipcMain.handle('featured:artists:get', handleFeaturedArtistsGet);
     ipcMain.handle('artist:tracks:get', handleArtistTracksGet);

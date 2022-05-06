@@ -1,31 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TrackItem } from '../../../shared/types';
-import useArtists from '../../hooks/use-artists';
+import useAlbums from '../../hooks/use-albums';
 import ShowcaseGrid from '../../components/ShowcaseGrid';
 import ShowcaseGridItem from '../../components/ShowcaseGridItem';
 import ArtistUnknown from './ArtistUnknown';
 import Modal from '../../components/Modal';
+import useArtist from '../../hooks/use-artist';
 
 const Artist = () => {
   const params = useParams();
-  const [tracks, setTracks] = useState<TrackItem[]>([]);
   const [editArtist, setEditArtist] = useState(false);
-  const { albums } = useArtists(tracks);
-
-  useEffect(() => {
-    const { artist } = params;
-
-    if (!artist) {
-      return;
-    }
-
-    const getAlbums = async () => {
-      setTracks(await window.electronAPI.getTracksByArtist(artist));
-    };
-
-    getAlbums();
-  }, [params]);
+  const { tracks, exists, artist } = useArtist(params.artist);
+  const { albums } = useAlbums(tracks);
 
   const selectImage = async () => {
     if (!params.artist) {
@@ -41,13 +27,13 @@ const Artist = () => {
     await window.electronAPI.updateArtistImage(params.artist, imagePath);
   };
 
-  if (!tracks.length) {
+  if (!exists) {
     return <ArtistUnknown />;
   }
 
   return (
     <div>
-      <h1>Artist {params.artist}</h1>
+      <h1>Artist {artist.name}</h1>
       <button type="button" onClick={() => setEditArtist(true)}>
         Edit
       </button>
