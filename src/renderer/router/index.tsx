@@ -11,14 +11,17 @@ const Router = () => {
   return (
     <MemoryRouter>
       <Header />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/artist/:artist" element={<Artist />} />
-          <Route path="/artist/:artist/album/:album" element={<Album />} />
-        </Routes>
-      </Layout>
+      {/* Compensate for fixed footer height to prevent un-scrollable overflow */}
+      <div className="mb-20">
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/artist/:artist" element={<Artist />} />
+            <Route path="/artist/:artist/album/:album" element={<Album />} />
+          </Routes>
+        </Layout>
+      </div>
       <Footer />
     </MemoryRouter>
   );
