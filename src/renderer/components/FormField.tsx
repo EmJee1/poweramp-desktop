@@ -1,5 +1,5 @@
 interface FormFieldProps {
-  label: string;
+  label?: string;
   htmlFor?: string;
   children: JSX.Element | JSX.Element[];
 }
@@ -22,6 +22,7 @@ const FormField = ({ htmlFor, label, children }: FormFieldProps) => {
 
 FormField.defaultProps = {
   htmlFor: undefined,
+  label: undefined,
 };
 
 export default FormField;
